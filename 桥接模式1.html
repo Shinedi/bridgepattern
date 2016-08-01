@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>桥接模式</title>
+    <script>
+        var speed=function(x,y){
+            this.x=x;
+            this.y=y;
+        };
+        speed.prototype.run=function(){
+            console.log('我跑的很快,不信你看'+this.x);
+        };
+        var speak=function(word){
+            this.word=word;
+        };
+        speak.prototype.say=function(){
+            console.log(this.word);
+        };
+        var people=function(x,y,z){
+            this.speed=new speed(x,y);
+            this.speak=new speak(z);
+        };
+        people.prototype.init=function(){
+            this.speed.run();
+            this.speak.say();
+        };
+        var people=new people(1,2,'我能说的可多了');
+        people.init();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

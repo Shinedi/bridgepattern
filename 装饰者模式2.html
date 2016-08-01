@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>装饰者模式2</title>
+    <style>
+        div{
+            display:none;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var input=document.getElementById('tab_input');
+            var odiv=document.getElementsByTagName('div')[0];
+           decorate('tab_input',function(){
+               odiv.style.display='block';
+           });
+            decorate('tab_input',function(){
+                alert('等你来削！');
+            });
+        };
+        var decorate=function(input ,fn){
+            var input=document.getElementById(input);
+            if(typeof input.onclick==='function')
+            {
+                var oldclickFn=input.onclick;
+                input.onclick=function(){
+                    oldclickFn();
+                    fn();
+                };
+            }
+            else{
+                input.onclick=fn;
+            }
+        };
+    </script>
+</head>
+<body>
+    <input id="tab_input" type="button" value="点我"/>
+    <div>小心我削你！</div>
+</body>
+</html>
